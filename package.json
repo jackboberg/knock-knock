@@ -1,0 +1,27 @@
+{
+  "name": "knock-knock",
+  "version": "0.0.0",
+  "description": "An npm module that returns basic information about the current project.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "mod-standard",
+    "posttest": "npm run lint",
+    "test": "lab --verbose --coverage"
+  },
+  "author": "Fran Varney <fran@modulus.io>",
+  "engines": {
+    "node": ">=0.10.36",
+    "npm": ">=2.14.7"
+  },
+  "keywords": [
+    "ping",
+    "environment"
+  ],
+  "devDependencies": {
+    "@modulus/standard": "0.1.1",
+    "code": "2.0.1",
+    "lab": "7.2.0",
+    "sinon": "1.17.2"
+  },
+  "license": "MIT"
+}
