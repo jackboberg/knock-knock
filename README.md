@@ -42,3 +42,17 @@ server.route([
   { method: 'GET', path: '/ping', handler: ping }
 ]);
 ```
+
+##### Express
+```
+var express = require('express');
+var knockKnock = require('knock-knock');
+
+var app = express();
+
+app.get('/ping', function (req, res) {
+  knockKnock(function (err, output) {
+    res.send(err || output);
+  });
+});
+```
