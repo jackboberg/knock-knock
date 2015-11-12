@@ -1,6 +1,6 @@
 {
   "name": "knock-knock",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "An npm module that returns basic information about the current project.",
   "main": "index.js",
   "scripts": {
