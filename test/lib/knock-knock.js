@@ -141,15 +141,17 @@ describe('lib/knock-knock', function () {
 
   describe('when executing a command fails', function () {
     beforeEach(function (done) {
+      Child.exec.onFirstCall().yields(new Error('exec error').toString())
+                .onSecondCall().yields(new Error('exec error').toString())
       Fs.readFile.yields(null, out);
       done();
     });
 
-    it('yields an error', function (done) {
+    it('stringifies the err', function (done) {
       KnockKnock(function (err, results) {
-        expect(err).to.be.instanceof(Error);
-        expect(err.message).to.equal('exec');
-        expect(results).to.be.undefined();
+        expect(err).to.be.null();
+        expect(results.node).to.equal('Error: exec error');
+        expect(results.npm).to.equal('Error: exec error');
         done();
       });
     });
