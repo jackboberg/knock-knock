@@ -156,4 +156,15 @@ describe('lib/knock-knock', function () {
       });
     });
   });
+
+  describe('when options is not an object', function () {
+    it('throws an error', function (done) {
+      expect(function () {
+        return KnockKnock('string', function () {
+          return
+        });
+      }).to.throw();
+      done();
+    });
+  });
 });
