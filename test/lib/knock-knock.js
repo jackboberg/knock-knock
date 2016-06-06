@@ -10,7 +10,6 @@ var lab = exports.lab = Lab.script();
 var describe = lab.describe;
 var after = lab.after;
 var afterEach = lab.afterEach;
-// var before = lab.before;
 var beforeEach = lab.beforeEach;
 var expect = Code.expect;
 var it = lab.it;
@@ -19,7 +18,6 @@ const KnockKnock = require('../../lib/knock-knock');
 
 var packagePath = Path.join(process.cwd(), 'package.json');
 var out = Object.prototype;
-var stdout;
 var temp = process.env.NODE_ENV; // eslint-disable-line no-process-env
 
 describe('lib/knock-knock', function () {
@@ -34,8 +32,6 @@ describe('lib/knock-knock', function () {
       npm: '2.14.7'
     };
     out = JSON.stringify(out);
-
-    stdout = '4.2.1\n2.14.7';
 
     Sinon.stub(Child, 'exec').yields(new Error('exec'));
     Sinon.stub(Fs, 'readFile').yields(new Error('readFile'));
@@ -56,7 +52,8 @@ describe('lib/knock-knock', function () {
 
   describe('when called', function () {
     beforeEach(function (done) {
-      Child.exec.yields(null, stdout);
+      Child.exec.onFirstCall().yields(null, '4.2.1')
+                .onSecondCall().yields(null, '2.14.7');
       Fs.readFile.yields(null, out);
       done();
     });
@@ -113,6 +110,24 @@ describe('lib/knock-knock', function () {
     });
   });
 
+  describe('when options are passed in', function () {
+    beforeEach(function (done) {
+      Child.exec.onFirstCall().yields(null, '4.2.1')
+                .onSecondCall().yields(null, '2.14.7')
+                .onThirdCall().yields(null, 'value');
+      Fs.readFile.yields(null, out);
+      done();
+    });
+
+    it('executes all commands', function (done) {
+      KnockKnock({ key: 'value -v' }, function (err, results) {
+        expect(err).to.be.null();
+        expect(results.key).to.equal('value');
+        done();
+      });
+    });
+  })
+
   describe('when package.json is not found', function () {
     it('yields an error', function (done) {
       KnockKnock(function (err, results) {
@@ -124,19 +139,32 @@ describe('lib/knock-knock', function () {
     });
   });
 
-  describe('when getting the node and npm version fails', function () {
+  describe('when executing a command fails', function () {
     beforeEach(function (done) {
+      Child.exec.onFirstCall().yields(new Error('exec error').toString())
+                .onSecondCall().yields(new Error('exec error').toString())
       Fs.readFile.yields(null, out);
       done();
     });
 
-    it('yields an error', function (done) {
+    it('stringifies the err', function (done) {
       KnockKnock(function (err, results) {
-        expect(err).to.be.instanceof(Error);
-        expect(err.message).to.equal('exec');
-        expect(results).to.be.undefined();
+        expect(err).to.be.null();
+        expect(results.node).to.equal('Error: exec error');
+        expect(results.npm).to.equal('Error: exec error');
         done();
       });
+    });
+  });
+
+  describe('when options is not an object', function () {
+    it('throws an error', function (done) {
+      expect(function () {
+        return KnockKnock('string', function () {
+          return
+        });
+      }).to.throw();
+      done();
     });
   });
 });

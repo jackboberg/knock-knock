@@ -4,9 +4,10 @@
   "description": "An npm module that returns basic information about the current project.",
   "main": "index.js",
   "scripts": {
+    "coverage": "lab --coverage --reporter lcov --output coverage/lcov.info",
     "lint": "mod-standard",
     "posttest": "npm run lint",
-    "test": "lab --verbose --coverage"
+    "test": "lab -cvv"
   },
   "author": "Fran Varney <fran@modulus.io>",
   "engines": {
