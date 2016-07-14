@@ -126,7 +126,7 @@ describe('lib/knock-knock', function () {
         done();
       });
     });
-  })
+  });
 
   describe('when package.json is not found', function () {
     it('yields an error', function (done) {
@@ -142,7 +142,7 @@ describe('lib/knock-knock', function () {
   describe('when executing a command fails', function () {
     beforeEach(function (done) {
       Child.exec.onFirstCall().yields(new Error('exec error').toString())
-                .onSecondCall().yields(new Error('exec error').toString())
+                .onSecondCall().yields(new Error('exec error').toString());
       Fs.readFile.yields(null, out);
       done();
     });
@@ -161,7 +161,7 @@ describe('lib/knock-knock', function () {
     it('throws an error', function (done) {
       expect(function () {
         return KnockKnock('string', function () {
-          return
+          return;
         });
       }).to.throw();
       done();
