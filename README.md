@@ -2,8 +2,10 @@ knock-knock
 ===========
 An npm module that returns basic information about the current project.
 
+[![NPM version](https://badge.fury.io/js/knock-knock.svg)](http://badge.fury.io/js/knock-knock) [![Build Status](https://travis-ci.org/onmodulus/knock-knock.svg?branch=master)](https://travis-ci.org/onmodulus/knock-knock)
+
 ## Install
-`npm install`
+`npm install knock-knock`
 
 ## Usage
 ##### Without options
