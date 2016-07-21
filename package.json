@@ -11,7 +11,7 @@
   },
   "author": "Fran Varney <fran@modulus.io>",
   "engines": {
-    "node": ">=0.10.36",
+    "node": ">=4.4.7",
     "npm": ">=2.14.7"
   },
   "keywords": [
@@ -21,7 +21,7 @@
   "devDependencies": {
     "@modulus/standard": "1.0.0",
     "code": "2.0.1",
-    "lab": "7.2.0",
+    "lab": "10.9.0",
     "sinon": "1.17.2"
   },
   "license": "MIT"
