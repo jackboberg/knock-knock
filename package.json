@@ -11,7 +11,7 @@
   },
   "author": "Fran Varney <fran@modulus.io>",
   "engines": {
-    "node": ">=0.10.36",
+    "node": ">=4.4.7",
     "npm": ">=2.14.7"
   },
   "keywords": [
