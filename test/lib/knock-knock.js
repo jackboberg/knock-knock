@@ -167,4 +167,13 @@ describe('lib/knock-knock', function () {
       done();
     });
   });
+
+  describe('when no callback passed', function () {
+    it('throws an error', function (done) {
+      expect(function () {
+        return KnockKnock({});
+      }).to.throw();
+      done();
+    });
+  });
 });
