@@ -2,6 +2,15 @@
   "name": "knock-knock",
   "version": "0.2.1",
   "description": "An npm module that returns basic information about the current project.",
+  "author": "Fran Varney <fvarney@progress.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onmodulus/knock-knock.git"
+  },
+  "bugs": {
+    "url": "https://github.com/onmodulus/knock-knock/issues"
+  },
+  "homepage": "https://github.com/onmodulus/knock-knock#readme",
   "main": "index.js",
   "scripts": {
     "coverage": "lab --coverage --reporter lcov --output coverage/lcov.info",
@@ -9,7 +18,6 @@
     "posttest": "npm run lint",
     "test": "lab -cvv"
   },
-  "author": "Fran Varney <fran@modulus.io>",
   "engines": {
     "node": ">=4.4.7",
     "npm": ">=2.14.7"
