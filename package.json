@@ -1,6 +1,6 @@
 {
   "name": "knock-knock",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "An npm module that returns basic information about the current project.",
   "author": "Fran Varney <fvarney@progress.com>",
   "repository": {
