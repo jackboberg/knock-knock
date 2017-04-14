@@ -12,6 +12,9 @@
     "Kevin Mulcrone (http://kaybesee.com/)",
     "Fran Varney <fran.varn@gmail.com>"
   ],
+  "dependencies": {
+    "run-parallel": "1.1.6"
+  },
   "devDependencies": {
     "code": "2.0.1",
     "lab": "10.9.0",
