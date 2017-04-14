@@ -2,9 +2,7 @@ const Assert = require('assert')
 const Child = require('child_process')
 const Fs = require('fs')
 const Path = require('path')
-
-let keys = []
-let out = {}
+const Parallel = require('run-parallel')
 
 module.exports = (options, done) => {
   if (typeof options === 'function') {
@@ -15,17 +13,21 @@ module.exports = (options, done) => {
   Assert.equal(typeof options, 'object', 'Options must be an object')
   Assert.equal(typeof done, 'function', 'Must pass in a callback function')
 
-  options = Object.assign({ node: 'node -v', npm: 'npm -v' }, options)
-  keys = Object.keys(options)
-
-  out = { env: process.env.NODE_ENV }
+  let out = { env: process.env.NODE_ENV }
 
   packageDetails((err, data) => {
     if (err) return done(err)
 
     Object.assign(out, data)
 
-    return execute(options, done)
+    const cmds = Object.assign({ node: 'node -v', npm: 'npm -v' }, options)
+
+    // eslint-disable-next-line handle-callback-err
+    commandDetails(cmds, (err, data) => { // never yields error
+      Object.assign(out, data)
+
+      done(null, out)
+    })
   })
 }
 
@@ -41,13 +43,19 @@ const packageDetails = (done) => {
   })
 }
 
-const execute = (options, done) => {
-  var key = keys.shift()
+const commandDetails = (cmds, done) => {
+  const tasks = Object.keys(cmds)
+    .reduce((acc, key) => {
+      acc[key] = (next) => proc(cmds[key], next)
+      return acc
+    }, {})
 
-  if (!key) return done(null, out)
+  Parallel(tasks, done)
+}
 
-  Child.exec(options[key], function (err, stdout) {
-    out[key] = err ? err.toString() : stdout.replace(/\n/g, '')
-    return execute(options, done)
+const proc = (cmd, done) => {
+  Child.exec(cmd, (err, stdout) => {
+    if (err) done(null, err.toString())
+    else done(null, stdout.replace(/\n/g, ''))
   })
 }
