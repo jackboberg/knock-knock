@@ -3,8 +3,6 @@ const Child = require('child_process')
 const Fs = require('fs')
 const Path = require('path')
 
-const packagePath = Path.join(process.cwd(), 'package.json')
-
 let keys = []
 let out = {}
 
@@ -20,17 +18,26 @@ module.exports = (options, done) => {
   options = Object.assign({ node: 'node -v', npm: 'npm -v' }, options)
   keys = Object.keys(options)
 
-  Fs.readFile(packagePath, 'utf8', (err, packageJson) => {
+  out = { env: process.env.NODE_ENV }
+
+  packageDetails((err, data) => {
     if (err) return done(err)
 
-    packageJson = JSON.parse(packageJson)
-    out = {
-      name: packageJson.name,
-      version: packageJson.version,
-      env: process.env.NODE_ENV
-    }
+    Object.assign(out, data)
 
     return execute(options, done)
+  })
+}
+
+const packageDetails = (done) => {
+  const packagePath = Path.join(process.cwd(), 'package.json')
+
+  Fs.readFile(packagePath, 'utf8', (err, data) => {
+    if (err) return done(err)
+
+    const { name, version } = JSON.parse(data)
+
+    done(null, { name, version })
   })
 }
 
