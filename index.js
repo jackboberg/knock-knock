@@ -1,3 +1,3 @@
-const KnockKnock = require('./lib/knock-knock');
+const KnockKnock = require('./lib/knock-knock')
 
-module.exports = KnockKnock;
+module.exports = KnockKnock

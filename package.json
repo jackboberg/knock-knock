@@ -13,7 +13,6 @@
     "Fran Varney <fran.varn@gmail.com>"
   ],
   "devDependencies": {
-    "@modulus/standard": "1.0.0",
     "code": "2.0.1",
     "lab": "10.9.0",
     "sinon": "1.17.2",
@@ -35,7 +34,7 @@
   },
   "scripts": {
     "coverage": "lab --coverage --reporter lcov --output coverage/lcov.info",
-    "lint": "mod-standard",
+    "lint": "standard -v",
     "posttest": "npm run lint",
     "test": "lab -cvv"
   }
