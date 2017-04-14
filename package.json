@@ -1,30 +1,16 @@
 {
   "name": "knock-knock",
+  "description": "basic information about the current project and environment",
   "version": "1.0.0",
-  "description": "An npm module that returns basic information about the current project.",
-  "author": "Fran Varney <fvarney@progress.com>",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/onmodulus/knock-knock.git"
-  },
+  "author": "Jack Boberg <hello@jackboberg.info>",
   "bugs": {
-    "url": "https://github.com/onmodulus/knock-knock/issues"
+    "url": "https://github.com/jackboberg/knock-knock/issues"
   },
-  "homepage": "https://github.com/onmodulus/knock-knock#readme",
-  "main": "index.js",
-  "scripts": {
-    "coverage": "lab --coverage --reporter lcov --output coverage/lcov.info",
-    "lint": "mod-standard",
-    "posttest": "npm run lint",
-    "test": "lab -cvv"
-  },
-  "engines": {
-    "node": ">=4.4.7",
-    "npm": ">=2.14.7"
-  },
-  "keywords": [
-    "ping",
-    "environment"
+  "contributors": [
+    "Jack Boberg <hello@jackboberg.info>",
+    "Jeremiah Harlan <jeremiah.harlan@gmail.com>",
+    "Kevin Mulcrone (http://kaybesee.com/)",
+    "Fran Varney <fran.varn@gmail.com>"
   ],
   "devDependencies": {
     "@modulus/standard": "1.0.0",
@@ -32,5 +18,24 @@
     "lab": "10.9.0",
     "sinon": "1.17.2"
   },
-  "license": "MIT"
+  "engines": {
+    "node": "^6"
+  },
+  "homepage": "https://github.com/jackboberg/knock-knock#readme",
+  "keywords": [
+    "environment",
+    "ping"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jackboberg/knock-knock.git"
+  },
+  "scripts": {
+    "coverage": "lab --coverage --reporter lcov --output coverage/lcov.info",
+    "lint": "mod-standard",
+    "posttest": "npm run lint",
+    "test": "lab -cvv"
+  }
 }
