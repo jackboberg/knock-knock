@@ -9,6 +9,7 @@ npm-debug.log
 
 results
 coverage
+.nyc_output
 
 *.swp
 .idea
