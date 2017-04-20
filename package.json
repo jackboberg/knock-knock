@@ -23,7 +23,8 @@
     "sinon": "1.17.2",
     "standard": "~10.0.2",
     "tap": "~10.3.2",
-    "temporary-directory": "~1.0.2"
+    "temporary-directory": "~1.0.2",
+    "testdouble": "~2.1.2"
   },
   "engines": {
     "node": "^6"
