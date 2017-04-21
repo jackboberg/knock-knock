@@ -20,28 +20,44 @@
 
 ## Usage
 
+### `KnockKnock([commands], callback)`
+
+- **commands** `Object` (Optional)  
+  values are a command to execute, a trimmed `stdout` or `stderr` will be yielded
+- **callback** `Function`  
+  `(err, result) => {}`
+
+#### default result
+
+| key       | value
+| ---       | --- 
+| name      | derived from `package.json`
+| version   | derived from `package.json`
+| env       | `process.env.NODE_ENV`
+| node      | `node -v`
+| npm       | `npm -v`
+
+### Examples
+
+#### using defaults
+
 ```js
 const KnockKnock = require('knock-knock')
 
 KnockKnock((err, results) => {
   if (err) throw err
   console.log(results)
+  /** {
+    name: 'some-name',
+    version: '1.2.3',
+    env: 'production',
+    node: 'v6.10.1',
+    npm: '4.5.0'
+  } **/
 })
 ```
 
-Logs:
-
-```json
-{
-  name: 'some-name',
-  version: '1.2.3',
-  env: 'production',
-  node: 'v6.10.1',
-  npm: '4.5.0'
-}
-```
-
-### pass custom commands
+#### passing custom command
 
 ```js
 const KnockKnock = require('knock-knock')
@@ -49,25 +65,11 @@ const KnockKnock = require('knock-knock')
 KnockKnock({ docker: 'docker -v' }, (err, results) => {
   if (err) throw err
   console.log(results)
+  // { docker: 'Docker version 17.03.1-ce, build c6d412e', ... }
 })
 ```
 
-Logs:
-
-```json
-{
-  name: 'some-name',
-  version: '1.2.3',
-  env: 'production',
-  node: 'v6.10.1',
-  npm: '4.5.0',
-  docker: 'Docker version 17.03.1-ce, build c6d412e'
-}
-```
-
-### use as an API endpoint
-
-#### Hapi
+#### hapi endpoint
 
 ```js
 const Hapi = require('hapi')
@@ -82,7 +84,7 @@ server.route([
 ])
 ```
 
-#### Express
+#### Express endpoint
 
 ```js
 const Express = require('express')
