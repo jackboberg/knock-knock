@@ -1,7 +1,7 @@
 {
   "name": "knock-knock",
   "description": "basic information about the current project and environment",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "author": "Jack Boberg <hello@jackboberg.info>",
   "bugs": {
     "url": "https://github.com/jackboberg/knock-knock/issues"
