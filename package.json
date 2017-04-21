@@ -13,13 +13,16 @@
     "Fran Varney <fran.varn@gmail.com>"
   ],
   "dependencies": {
+    "read-pkg-up": "2.0.0",
     "run-parallel": "1.1.6"
   },
   "devDependencies": {
-    "code": "2.0.1",
-    "lab": "10.9.0",
-    "sinon": "1.17.2",
-    "standard": "~10.0.2"
+    "code": "~4.0.0",
+    "mkdirp": "~0.5.1",
+    "standard": "~10.0.2",
+    "tap": "~10.3.2",
+    "temporary-directory": "~1.0.2",
+    "testdouble": "~2.1.2"
   },
   "engines": {
     "node": "^6"
@@ -36,9 +39,9 @@
     "url": "git+https://github.com/jackboberg/knock-knock.git"
   },
   "scripts": {
-    "coverage": "lab --coverage --reporter lcov --output coverage/lcov.info",
+    "cov": "npm run unit -- --cov --coverage-report=lcov",
     "lint": "standard -v",
-    "posttest": "npm run lint",
-    "test": "lab -cvv"
+    "test": "npm run lint && npm run unit",
+    "unit": "tap test/*.js -R spec --100"
   }
 }
