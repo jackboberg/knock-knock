@@ -1,10 +1,4 @@
+sudo: false
 language: node_js
 node_js:
   - '6'
-before_install:
-  - 'npm install -g npm@latest && npm install -g codeclimate-test-reporter'
-addons:
-  code_climate:
-    repo_token: f0f565a1f5fdf857ec35c946f6b189e8f29bbffe22518341c67d9a5f2794c1a4
-after_install:
-  - 'npm run coverage && cat coverage/lcov.info | codeclimate-test-reporter' 
