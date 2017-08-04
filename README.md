@@ -1,5 +1,7 @@
 # knock-knock
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/jackboberg/knock-knock.svg)](https://greenkeeper.io/)
+
 > basic information about the current project and environment
 
 [![npm][npm-image]][npm-url]
